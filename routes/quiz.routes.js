@@ -7,10 +7,28 @@ router.get('/quiz/:type', async (req, res, next) => {
     const {type} = req.params;
 
     try {
-       const questions = Question.aggregate(
-            [ { $sample: { size: 10 } } ]
-         )
-        res.json(questions);
+
+       if(type === 'general'){
+       let questions = await Question.find();
+       let randomNumbers = [];
+       let quiz = [];
+       let i = 0;
+       let random = 0;
+
+       while(i < 10){
+        random = Math.floor(Math.random() * questions.length + 1);
+        if(!randomNumbers.includes(random)) {
+        randomNumbers.push(random);
+        quiz.push(questions[random]);
+        i++;
+
+        }
+    }
+
+
+       }
+
+        res.json(quiz);
     } catch (error) {
         console.log(error);
     }
