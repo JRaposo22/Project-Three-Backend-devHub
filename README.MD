@@ -166,7 +166,7 @@ Components:
   image: { type: String, default: ""},
   hints: [ { type: Schema.Types.ObjectId, ref:'Hint' } ],
   jobs: [ { type: Schema.Types.ObjectId, ref:'Job' } ]
-  timestamp: true,
+  timestamps: true,
 }
 ```
 
@@ -179,9 +179,10 @@ Components:
    title: { type: String, required: true },
    company: { type: String, required: true },
    description: { type: String, required: true },
+   category: { type: String, required: true },
    image: { type: String, default:""},
    createdBy: [ { type: Schema.Types.ObjectId, ref:'User' } ]
-   timestamp: true,
+   timestamps: true,
  }
 ```
 
@@ -193,9 +194,9 @@ Components:
  {
    title: { type: String, required: true },
    description: { type: String, required: true },
-   type: { type: String, required: true },
+   category: { type: String, required: true },
    createdBy: [ { type: Schema.Types.ObjectId, ref:'User' } ]
-   timestamp: true,
+   timestamps: true,
  }
 ```
 
@@ -204,11 +205,11 @@ Components:
 
 ```javascript
  {
-   type: { type: String, required: true },
+   category: { type: String, required: true },
    question: { type: String, required: true },
    answers: { type: {String}, required: true },
    correctAnswers: { type: {String}, required: true },
-   timestamp: true,
+   timestamps: true,
  }
 ```
 
