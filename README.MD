@@ -262,9 +262,9 @@ To be determined.
 
 The url to your repository and to your deployed project
 
-[Client repository Link](https://github.com/screeeen/project-client)
+[Client repository Link](https://github.com/JRaposo22/Project-Three-Frontend-devHub)
 
-[Server repository Link](https://github.com/screeeen/project-server)
+[Server repository Link](https://github.com/JRaposo22/Project-Three-Backend-devHub)
 
 [Deployed App Link](http://heroku.com)
 
@@ -274,6 +274,6 @@ The url to your repository and to your deployed project
 
 ### Contributors
 
-FirstName LastName - <github-username> - <linkedin-profile-link>
+João Raposo - <[Github](https://github.com/JRaposo22)> - <[Linkedin](www.linkedin.com/in/joãofraposo)>
 
-FirstName LastName - <github-username> - <linkedin-profile-link>
+Joana Gomes - <[Github](https://github.com/joanadgomes)> - <[Linkedin](https://www.linkedin.com/in/joanadgomes/)>
