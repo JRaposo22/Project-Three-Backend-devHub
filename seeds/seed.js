@@ -21,7 +21,7 @@ async function questionsSeed() {
             answer_c : quest.answers.answer_c,
             answer_d : quest.answers.answer_d,
         };
-        let category = 'JavaScript';
+        let category = 'javascript';
         let correctAnswer = '';
         if(quest.correct_answers.answer_a_correct === 'true')  correctAnswer = quest.answers.answer_a;
         else if(quest.correct_answers.answer_b_correct === 'true')  correctAnswer = quest.answers.answer_b;
