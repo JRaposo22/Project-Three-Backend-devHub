@@ -15,12 +15,12 @@ async function questionsSeed() {
     const questions = response.data;
     questions.forEach(quest => {
         let question = quest.question;
-        let answers = {
-            answer_a : quest.answers.answer_a,
-            answer_b : quest.answers.answer_b,
-            answer_c : quest.answers.answer_c,
-            answer_d : quest.answers.answer_d,
-        };
+        let answers = [
+            quest.answers.answer_a,
+            quest.answers.answer_b,
+            quest.answers.answer_c,
+            quest.answers.answer_d,
+        ];
         let category = 'javascript';
         let correctAnswer = '';
         if(quest.correct_answers.answer_a_correct === 'true')  correctAnswer = quest.answers.answer_a;

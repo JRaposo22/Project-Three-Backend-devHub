@@ -43,6 +43,7 @@ router.get('/quiz/:type', async (req, res, next) => {
                }
         }
        
+        console.log(quiz)
         res.json(quiz);
 
     } catch (error) {
