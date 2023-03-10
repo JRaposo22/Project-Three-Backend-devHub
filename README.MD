@@ -92,7 +92,7 @@ Pages:
 
 Components:
 
-- Quiz
+- Question
 - Navbar
 - Footer
 - Jobs
