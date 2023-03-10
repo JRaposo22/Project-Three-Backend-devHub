@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+require('dotenv').config();
 
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
@@ -18,7 +19,7 @@ const saltRounds = 10;
 
 // POST /auth/signup  - Creates a new user in the database
 router.post("/signup", (req, res, next) => {
-  const { email, password, username } = req.body;
+  const { email, password, username, adminPass } = req.body;
 
   // Check if email or password or username are provided as empty strings
   if (email === "" || password === "" || username === "") {
@@ -58,7 +59,9 @@ router.post("/signup", (req, res, next) => {
 
       // Create the new user in the database
       // We return a pending promise, which allows us to chain another `then`
-      return User.create({ email, password: hashedPassword, username });
+      console.log(process.env.ADMIN_PASS)
+      if(adminPass === process.env.ADMIN_PASS) return User.create({ email, password: hashedPassword, username, admin:true });
+      else return User.create({ email, password: hashedPassword, username, admin:false });
     })
     .then((createdUser) => {
       // Deconstruct the newly created user object to omit the password

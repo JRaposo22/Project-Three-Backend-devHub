@@ -20,6 +20,10 @@ const userSchema = new Schema(
     },
     hints: [{ type: Schema.Types.ObjectId, ref: 'Hint'}],
     jobs: [{ type: Schema.Types.ObjectId, ref: 'Job'}],
+
+    admin:{
+      type: Boolean
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
