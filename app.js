@@ -21,6 +21,9 @@ app.use("/api", indexRoutes);
 const jobRoutes = require("./routes/job.routes");
 app.use("/api", jobRoutes);
 
+const hintRoutes = require("./routes/hint.routes");
+app.use("/api", hintRoutes);
+
 const userRoutes = require("./routes/user.routes");
 app.use("/", userRoutes);
 

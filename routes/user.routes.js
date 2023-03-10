@@ -8,7 +8,7 @@ router.get('/profile/:id', async (req, res, next) => {
     const { id } = req.params;
 
     try {
-        const profile = await User.findById(id).populate('hints');
+        const profile = await User.findById(id).populate('hints').populate('jobs');
         console.log(profile);
         res.json(profile);
 
@@ -18,7 +18,6 @@ router.get('/profile/:id', async (req, res, next) => {
    
 })
 
-module.exports = router;
 
 
 // edit profile
@@ -35,3 +34,8 @@ router.put('/profile/:id', async (req, res, next) => {
         res.json(error);
     }
 })
+
+
+
+
+module.exports = router;
