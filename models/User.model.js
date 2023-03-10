@@ -22,7 +22,8 @@ const userSchema = new Schema(
     jobs: [{ type: Schema.Types.ObjectId, ref: 'Job'}],
 
     admin:{
-      type: Boolean
+      type: Boolean,
+      default:false
     }
   },
   {
