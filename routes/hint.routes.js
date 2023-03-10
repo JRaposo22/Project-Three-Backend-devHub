@@ -67,10 +67,6 @@ router.put('/hints/:id', async (req, res, next) => {
 
 router.delete('/hints/:id', async (req, res, next) => {
     const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        res.json('The provider id is not valid');
-      }
     
       try {
         await Hint.findByIdAndRemove(id);
