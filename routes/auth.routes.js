@@ -59,8 +59,7 @@ router.post("/signup", (req, res, next) => {
 
       // Create the new user in the database
       // We return a pending promise, which allows us to chain another `then`
-      console.log(process.env.ADMIN_PASS)
-      if(adminPass === process.env.ADMIN_PASS) return User.create({ email, password: hashedPassword, username, admin:true });
+      if(process.env.ADMIN_PASS != undefined && adminPass === process.env.ADMIN_PASS) return User.create({ email, password: hashedPassword, username, admin:true });
       else return User.create({ email, password: hashedPassword, username, admin:false });
     })
     .then((createdUser) => {
