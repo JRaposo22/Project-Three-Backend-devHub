@@ -55,7 +55,7 @@ router.put('/hints/:id', async (req, res, next) => {
     const {title, description, category} = req.body;
 
       try {
-        const updatedHint = await Hint.findByIdAndUpdate(id, {title, description, category});
+        const updatedHint = await Hint.findByIdAndUpdate(id, {title, description, category}, { new: true });
 
         res.json(updatedHint);
       } catch (error) {
