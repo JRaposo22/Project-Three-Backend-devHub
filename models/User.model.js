@@ -18,6 +18,8 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
+    hints: [{ type: Schema.Types.ObjectId, ref: 'Hint'}],
+    jobs: [{ type: Schema.Types.ObjectId, ref: 'Job'}],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

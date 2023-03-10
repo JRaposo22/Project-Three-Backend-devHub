@@ -60,7 +60,7 @@ router.put('/jobs/:id', async (req, res, next) => {
   const { title, company, description, image, category } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.json('Thee provider id is not valid');
+    res.json('The provider id is not valid');
   }
 
   try {
