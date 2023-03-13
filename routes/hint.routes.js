@@ -2,6 +2,9 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 
 const Hint = require('../models/Hint.model');
+const User = require('../models/User.model');
+const { isAuthenticated } = require("../middleware/jwt.middleware.js");
+
 
 // All hints
 
@@ -19,15 +22,18 @@ router.get('/hints', async (req, res, next) => {
 
 // one hint detail
 
-router.get('/hints/:id', async (req, res, next) => {
+router.get('/hints/:id', isAuthenticated, async (req, res, next) => {
     const { id } = req.params;
+    console.log(req.payload);
+
 
     try {
         const hint = await Hint.findById(id).populate('createdBy');
+        const user = await User.findById(req.payload._id);
 
-        res.json(hint);
-    } catch (error) {
-        consol.log(error);
+        res.json({hint, user});
+      } catch (error) {
+        console.log(error);
         res.json(error);
     }
 })
