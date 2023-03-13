@@ -12,7 +12,7 @@ router.get('/hints', async (req, res, next) => {
   try {
     const hints = await Hint.find().populate('createdBy');
 
-    res.json(hints);
+    res.json(hints); 
   } catch (error) {
     console.log(error);
     res.json(error);
