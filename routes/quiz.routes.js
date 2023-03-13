@@ -25,6 +25,7 @@ router.get('/quiz/:type', async (req, res, next) => {
         //Check the type of the quiz
         if(type == 'general'){
             questions = await Question.find();
+            console.log(questions)
          }else{
             questions = await Question.find({category:type})
        }
@@ -35,7 +36,7 @@ router.get('/quiz/:type', async (req, res, next) => {
       
         //Generate a random number, check if it was used already and push that random question do the quiz array
         while(i < questionsLength){
-             random = Math.floor(Math.random() * questionsLength);
+             random = Math.floor(Math.random() * questions.length);
              if(!randomNumbers.includes(random)) {
                 randomNumbers.push(random);
                 quiz.push(questions[random]);
@@ -43,7 +44,7 @@ router.get('/quiz/:type', async (req, res, next) => {
                }
         }
        
-        console.log(quiz)
+        //console.log(quiz)
         res.json(quiz);
 
     } catch (error) {
