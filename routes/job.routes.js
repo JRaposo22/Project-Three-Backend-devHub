@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
+const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 const Job = require('../models/Job.model');
+const User = require('../models/User.model');
 
 // All jobs
 
@@ -18,13 +20,15 @@ router.get('/jobs', async (req, res, next) => {
 
 // One Job detail
 
-router.get('/jobs/:id', async (req, res, next) => {
+router.get('/jobs/:id',isAuthenticated , async (req, res, next) => {
   const { id } = req.params;
+  console.log(req.payload);
 
   try {
     const job = await Job.findById(id).populate('createdBy');
+    const user = await User.findById(req.payload._id);
 
-    res.json(job);
+    res.json({job, user});
   } catch (error) {
     console.log(error);
     res.json(error);
