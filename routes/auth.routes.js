@@ -100,7 +100,7 @@ router.post("/login", (req, res, next) => {
 
       if (passwordCorrect) {
         // Deconstruct the user object to omit the password
-        const { _id, email, username, admin } = foundUser;
+        const { _id, email, username } = foundUser;
 
         // Create an object that will be set as the token payload
         const payload = { _id, email, username };
@@ -112,7 +112,7 @@ router.post("/login", (req, res, next) => {
         });
 
         // Send the token as the response
-        res.status(200).json({ authToken: authToken, admin });
+        res.status(200).json({ authToken: authToken });
       } else {
         res.status(401).json({ message: "Unable to authenticate the user" });
       }
