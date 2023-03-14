@@ -18,8 +18,6 @@ router.get('/profile/:id', async (req, res, next) => {
    
 })
 
-
-
 // edit profile
 
 router.put('/profile/:id', async (req, res, next) => {
@@ -35,7 +33,17 @@ router.put('/profile/:id', async (req, res, next) => {
     }
 })
 
+//get user by email
 
+router.get('/user/:email', async (req, res, next) => {
+    const{email} = req.params;
+    try {
+        const user = await User.find({email:email})
+        res.json(user);
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 
 module.exports = router;
