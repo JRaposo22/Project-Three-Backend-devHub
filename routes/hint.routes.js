@@ -8,11 +8,12 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 // All hints
 
-router.get('/hints', async (req, res, next) => {
+router.get('/hints',isAuthenticated , async (req, res, next) => {
   try {
     const hints = await Hint.find().populate('createdBy');
+    const user = await User.findById(req.payload._id);
 
-    res.json(hints); 
+    res.json({hints, user}); 
   } catch (error) {
     console.log(error);
     res.json(error);
