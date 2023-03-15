@@ -56,6 +56,26 @@ router.post('/jobs', async (req, res, next) => {
   }
 });
 
+//approve job
+
+router.put('/jobs/:id/approve', async (req, res, next) => {
+  const { id } = req.params;
+
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.json('The provider id is not valid');
+  }
+
+  try {
+    
+    const updatedJob = await Job.findByIdAndUpdate(id,{ approved: true}, {new:true});
+
+    res.json(updatedJob);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 // update Job
 
 router.put('/jobs/:id', async (req, res, next) => {
@@ -79,6 +99,8 @@ router.put('/jobs/:id', async (req, res, next) => {
     res.json(error);
   }
 });
+
+
 
 // delete job
 

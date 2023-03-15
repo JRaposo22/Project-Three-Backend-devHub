@@ -53,6 +53,28 @@ router.post('/hints/', async (req, res, next) => {
     }
 })
 
+
+
+//approve hint
+
+router.put('/hint/:id/approve', async (req, res, next) => {
+  const { id } = req.params;
+
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.json('The provider id is not valid');
+  }
+
+  try {
+    
+    const updatedHint = await Hint.findByIdAndUpdate(id,{ approved: true}, {new:true});
+
+    res.json(updatedHint);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 // update hint
 
 router.put('/hints/:id', async (req, res, next) => {
