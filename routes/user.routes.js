@@ -6,13 +6,13 @@ const { isAuthenticated } = require('../middleware/jwt.middleware');
 
 // profile
 
-router.get('/profile', isAuthenticated, async (req, res, next) => {
-    //const { id } = req.params;
+router.get('/profile/:id' , async (req, res, next) => {
+    const { id } = req.params;
 
     try {
-        const profile = await User.findById(req.payload._id).populate('hints').populate('jobs');
-        console.log(profile);
-        res.json(profile);
+        const user = await User.findById(id).populate('hints').populate('jobs');
+        //console.log(profile);
+        res.json(user);
 
     } catch (error) {
         res.json(error);
@@ -23,17 +23,19 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
 // edit profile
 
 router.put('/profile/:id', fileUploader.single('imageUrl'), async (req, res, next) => {
-    const {username, email, currentImage} = req.body;
-    let imageUrl
+    const {username, email, imageUrl} = req.body;
+    console.log(req.body)
+    
+    //let imageUrl
 
-    if(req.file) imageUrl = req.file.path;
-    else imageUrl = currentImage
+    //if(!req.file) imageUrl = req.file.path;
+    //else imageUrl = currentImage
 
     try {
         const updatedProfile = await User.findByIdAndUpdate(
             id, {username, email, imageUrl}, { new: true });
 
-        res.json(updatedProfile);
+        res.json({updatedProfile});
     } catch (error) {
         res.json(error);
     }
