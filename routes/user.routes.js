@@ -1,14 +1,16 @@
 const router = require('express').Router();
 const User = require('../models/User.model');
+const fileUploader = require('../config/cloudinary.config');
+const { isAuthenticated } = require('../middleware/jwt.middleware');
 
 
 // profile
 
-router.get('/profile/:id', async (req, res, next) => {
-    const { id } = req.params;
+router.get('/profile', isAuthenticated, async (req, res, next) => {
+    //const { id } = req.params;
 
     try {
-        const profile = await User.findById(id).populate('hints').populate('jobs');
+        const profile = await User.findById(req.payload._id).populate('hints').populate('jobs');
         console.log(profile);
         res.json(profile);
 
@@ -20,12 +22,16 @@ router.get('/profile/:id', async (req, res, next) => {
 
 // edit profile
 
-router.put('/profile/:id', async (req, res, next) => {
-    const {username, email} = req.body;
+router.put('/profile/:id', fileUploader.single('imageUrl'), async (req, res, next) => {
+    const {username, email, currentImage} = req.body;
+    let imageUrl
+
+    if(req.file) imageUrl = req.file.path;
+    else imageUrl = currentImage
 
     try {
         const updatedProfile = await User.findByIdAndUpdate(
-            id, {username, email, image}, { new: true });
+            id, {username, email, imageUrl}, { new: true });
 
         res.json(updatedProfile);
     } catch (error) {

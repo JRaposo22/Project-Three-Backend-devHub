@@ -24,6 +24,11 @@ const userSchema = new Schema(
     admin:{
       type: Boolean,
       default:false
+    },
+
+    imageUrl: {
+      type:String,
+      default:'https://res.cloudinary.com/dkoe4o8w1/image/upload/v1678878431/devHub/default_dog_jrhehn.jpg'
     }
   },
   {
