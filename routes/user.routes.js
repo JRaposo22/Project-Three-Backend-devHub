@@ -7,12 +7,13 @@ const { isAuthenticated } = require('../middleware/jwt.middleware');
 // profile
 
 router.get('/profile', isAuthenticated, async (req, res, next) => {
-    //const { id } = req.params;
+    /* const { id } = req.params; */
+    console.log(req.payload)
 
     try {
-        const profile = await User.findById(req.payload._id).populate('hints').populate('jobs');
-        console.log(profile);
-        res.json(profile);
+/*         const profile = await User.findById(req.payload._id).populate('hints').populate('jobs');
+ */        /* console.log(profile); */
+        res.json(req.payload);
 
     } catch (error) {
         res.json(error);
