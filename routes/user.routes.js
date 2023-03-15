@@ -6,14 +6,13 @@ const { isAuthenticated } = require('../middleware/jwt.middleware');
 
 // profile
 
-router.get('/profile', isAuthenticated, async (req, res, next) => {
-    /* const { id } = req.params; */
-    console.log(req.payload)
+router.get('/profile/:id' , async (req, res, next) => {
+    const { id } = req.params;
 
     try {
-/*         const profile = await User.findById(req.payload._id).populate('hints').populate('jobs');
- */        /* console.log(profile); */
-        res.json(req.payload);
+        const user = await User.findById(id).populate('hints').populate('jobs');
+        //console.log(profile);
+        res.json(user);
 
     } catch (error) {
         res.json(error);
@@ -21,20 +20,31 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
    
 })
 
+
+
+//upload file
+router.post('/upload', fileUploader.single('imageUrl'), async (req, res, next) => {
+    
+
+   if(!req.file){
+    next(new Error('No file upload'));
+    return;
+   }
+
+   res.json({fileUrl : req.file.path})
+})
+
 // edit profile
-
-router.put('/profile/:id', fileUploader.single('imageUrl'), async (req, res, next) => {
-    const {username, email, currentImage} = req.body;
-    let imageUrl
-
-    if(req.file) imageUrl = req.file.path;
-    else imageUrl = currentImage
-
+router.put('/profile/:id', async (req, res, next) => {
+    const {username, email, imageUrl} = req.body;
+    const {id} = req.params;
+    console.log(imageUrl)
+    
     try {
         const updatedProfile = await User.findByIdAndUpdate(
             id, {username, email, imageUrl}, { new: true });
-
-        res.json(updatedProfile);
+            console.log(updatedProfile)
+        res.json({updatedProfile});
     } catch (error) {
         res.json(error);
     }
