@@ -27,7 +27,7 @@ const jobSchema = new Schema(
       required: true,
       trim: true,
     },
-    createdBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
     approved: {
       type: Boolean,
       default: false,

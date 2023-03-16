@@ -47,6 +47,7 @@ router.post('/jobs', async (req, res, next) => {
       description,
       image,
       category,
+      createdBy,
     });
 
     res.json(job);
