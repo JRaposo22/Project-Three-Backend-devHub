@@ -41,10 +41,13 @@ router.post('/jobs', async (req, res, next) => {
   const { title, company, description, image, category, createdBy } = req.body;
 
   try {
+    
+    let newDescription = description.replace("\n.", "<br>")
+    console.log(description)
     const job = await Job.create({
       title,
       company,
-      description,
+      description: newDescription,
       image,
       category,
       createdBy,
