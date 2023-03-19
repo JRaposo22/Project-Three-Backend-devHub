@@ -8,9 +8,7 @@ router.get('/quiz/:type', async (req, res, next) => {
     const {type} = req.params;
     
     try {
-
         //Get random questions,from all types or from a specific type
-
         let questions;
         //Random numbers that were already used
         let randomNumbers = [];
@@ -43,8 +41,6 @@ router.get('/quiz/:type', async (req, res, next) => {
                 i++;
                }
         }
-       
-        //console.log(quiz)
         res.json(quiz);
 
     } catch (error) {

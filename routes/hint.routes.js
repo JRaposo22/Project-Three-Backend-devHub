@@ -6,7 +6,7 @@ const User = require('../models/User.model');
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 
 
-// All hints
+//Route to display all hints
 
 router.get('/hints',isAuthenticated , async (req, res, next) => {
   try {
@@ -21,7 +21,7 @@ router.get('/hints',isAuthenticated , async (req, res, next) => {
 });
 
 
-// one hint detail
+//Route for the details of a specific hint
 
 router.get('/hints/:id', isAuthenticated, async (req, res, next) => {
     const { id } = req.params;
@@ -39,8 +39,7 @@ router.get('/hints/:id', isAuthenticated, async (req, res, next) => {
     }
 })
 
-// create hint
-
+//Route to create a hint
 router.post('/hints/', async (req, res, next) => {
     const {title, description, category} = req.body;
 
@@ -56,8 +55,7 @@ router.post('/hints/', async (req, res, next) => {
 
 
 
-//approve hint
-
+//Route to approve hints
 router.put('/hint/:id/approve', async (req, res, next) => {
   const { id } = req.params;
 
@@ -76,8 +74,7 @@ router.put('/hint/:id/approve', async (req, res, next) => {
   }
 });
 
-// update hint
-
+//Route to update hint
 router.put('/hints/:id', async (req, res, next) => {
     const { id } = req.params;
 
@@ -92,8 +89,7 @@ router.put('/hints/:id', async (req, res, next) => {
       }
 })
 
-// delete hint
-
+//Route to delete a hint
 router.delete('/hints/:id', async (req, res, next) => {
     const { id } = req.params;
     

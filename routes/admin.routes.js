@@ -3,6 +3,7 @@ const router = express.Router();
 const Job = require('../models/Job.model');
 const Hint = require('../models/Hint.model');
 
+//Route that displays jobs to approve to admins
 router.get('/jobs-approval', async (req, res, next) => {
 
     try {
@@ -13,6 +14,7 @@ router.get('/jobs-approval', async (req, res, next) => {
     }
 });
 
+//Route to the approve of a specific job
 router.put('/jobs-approval/:id', async (req, res, next) => {
 
     const {id} = req.params;
@@ -25,6 +27,7 @@ router.put('/jobs-approval/:id', async (req, res, next) => {
     }
 });
 
+//Route that displays hints to approve to admins
 router.get('/hints-approval', async (req, res, next) => {
 
     try {
@@ -35,16 +38,5 @@ router.get('/hints-approval', async (req, res, next) => {
     }
 });
 
-router.put('/hints-approval/:id', async (req, res, next) => {
-
-    const {id} = req.params;
-
-    try {
-        const hint = await Hint.findByIdAndUpdate(id,{approved:true}, {new:true})
-        res.json(hint)
-    } catch (error) {
-        console.log(error);
-    }
-});
 
 module.exports = router;

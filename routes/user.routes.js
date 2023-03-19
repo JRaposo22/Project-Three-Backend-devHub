@@ -4,8 +4,7 @@ const fileUploader = require('../config/cloudinary.config');
 const { isAuthenticated } = require('../middleware/jwt.middleware');
 
 
-// profile
-
+//Route to get user profile
 router.get('/profile/:id' , async (req, res, next) => {
     const { id } = req.params;
 
@@ -22,7 +21,7 @@ router.get('/profile/:id' , async (req, res, next) => {
 
 
 
-//upload file
+//Route to upload images using cloudinary
 router.post('/upload', fileUploader.single('imageUrl'), async (req, res, next) => {
     
 
@@ -34,7 +33,7 @@ router.post('/upload', fileUploader.single('imageUrl'), async (req, res, next) =
    res.json({fileUrl : req.file.path})
 })
 
-// edit profile
+//Route to edit profile
 router.put('/profile/:id', async (req, res, next) => {
     const {username, email, imageUrl} = req.body;
     const {id} = req.params;
@@ -50,8 +49,7 @@ router.put('/profile/:id', async (req, res, next) => {
     }
 })
 
-//get user by email
-
+//Route to get the user by email
 router.get('/user/:email', async (req, res, next) => {
     const{email} = req.params;
     try {

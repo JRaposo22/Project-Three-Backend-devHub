@@ -1,4 +1,4 @@
-function Quiz(questions, type){
+function filterQuiz(questions, type){
 
     while(i < 10){
 
@@ -19,6 +19,7 @@ function Quiz(questions, type){
        }else if (type === 'javascript'){
 
     }
+}
 
 }
 

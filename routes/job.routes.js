@@ -5,8 +5,7 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const Job = require('../models/Job.model');
 const User = require('../models/User.model');
 
-// All jobs
-
+// Route to get all jobs
 router.get('/jobs', async (req, res, next) => {
   try {
     const jobs = await Job.find().populate('createdBy');
@@ -18,8 +17,7 @@ router.get('/jobs', async (req, res, next) => {
   }
 });
 
-// One Job detail
-
+//Route to get one specific job
 router.get('/jobs/:id',isAuthenticated , async (req, res, next) => {
   const { id } = req.params;
   console.log(req.payload);
@@ -35,8 +33,7 @@ router.get('/jobs/:id',isAuthenticated , async (req, res, next) => {
   }
 });
 
-// Create job
-
+//Route to create a job
 router.post('/jobs', async (req, res, next) => {
   const { title, company, description, image, category, createdBy } = req.body;
 
@@ -60,8 +57,7 @@ router.post('/jobs', async (req, res, next) => {
   }
 });
 
-//approve job
-
+//Route to approve job
 router.put('/jobs/:id/approve', async (req, res, next) => {
   const { id } = req.params;
 
@@ -80,8 +76,7 @@ router.put('/jobs/:id/approve', async (req, res, next) => {
   }
 });
 
-// update Job
-
+//Route to update Job
 router.put('/jobs/:id', async (req, res, next) => {
   const { id } = req.params;
 
@@ -106,8 +101,7 @@ router.put('/jobs/:id', async (req, res, next) => {
 
 
 
-// delete job
-
+//Route to delete job
 router.delete('/jobs/:id', async (req, res, next) => {
   const { id } = req.params;
 
